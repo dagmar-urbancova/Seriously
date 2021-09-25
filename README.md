@@ -1,4 +1,4 @@
-# Seriously, I'm a data engineer
+# Seriously data engineer
 
 # 1. Vending machine
 
@@ -28,6 +28,6 @@
 - sort items into categories, offer categories first
 - sorting items by price / name / id
 - adding and removing items
-- updating amount of individual items
+- updating amount of individual items sold
 
 
