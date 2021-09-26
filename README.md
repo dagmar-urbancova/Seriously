@@ -30,4 +30,19 @@
 - adding and removing items
 - updating amount of individual items sold
 
+## execution
+### Requirements:
+    docker
+
+navigate to project directory, from commandline execute following commands:
+build docker image:
+```
+docker build -t serimage .  
+```
+
+execute docker container, which runs the script
+```
+docker run -it -v "/$(pwd)/vending_machine/vending_machine.py:/vending_machine.py" serimage:latest python /vending_machine.py
+```
+
 
