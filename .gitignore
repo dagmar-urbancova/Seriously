@@ -1,1 +1,7 @@
 /Data Engineer - Assignment.pdf
+tests/__pycache__/__init__.cpython-39.pyc
+tests/__pycache__/test_vending_machine.cpython-39-pytest-6.2.5.pyc
+vending_machine/__pycache__/__init__.cpython-39.pyc
+vending_machine/__pycache__/vending_machine.cpython-39.pyc
+.vscode/settings.json
+.gitignore
