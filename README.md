@@ -30,7 +30,7 @@
 - adding and removing items
 - updating amount of individual items sold
 
-## execution
+## Execution
 ### Requirements:
     docker
 
@@ -46,13 +46,21 @@ docker run -it -v "/$(pwd)/vending_machine/vending_machine.py:/vending_machine.p
 ```
 
 
-# 1. Elevator data modeling
+# 2. Elevator data modeling
 
 ## Modeling performance of elevators
 
 ![elevator data model](elevators_data_model.png)
+
+We are observing elevator usage in a building. There can be multiple elevators and multiple unique passengers.
+
+- We collect information on each passenger, where and when they wait and start their journey. 
+- We collect information on all elevators and their movement - arrival at a floor and departure.
+- We assume each passenger gets a unique identifier per journey.
+- We assume there are three stages of passengers - wait for the elvator to arrive, enter the elevator and exit the elevator. If elevator stops without the passenger getting off we do not collect any data for the given passenger.
+
 Model is modified for easier analysis, contains some duplicate data across tables or computable from other table. Raw data doesn't have to contain duplicates, depending on amount of data (e.g. `elevator_wait.departure_dt`,  `elevator_arrivals.passenger_cnt`, `.waiting_cnt`). Given tables can be considered halfway between processed data and computed datamarts.
-We assume each person gets a unique identifier per journey.
+
 
 Dimension tables:
 - `elevator`: information about available elevators
@@ -80,3 +88,25 @@ Fact tables:
 - average waiting time for lift to arrive for all passengers and lifts, in seconds
 - average travelled floors for passengers
 - average elevator travel time between making stops
+
+## Execution
+
+### Requirements:
+    docker
+
+navigate to project directory, from commandline execute following commands:
+
+
+execute docker container
+```
+docker run --name postgres-db -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+```
+
+1. access PostgreSQL database (via e.g. pgAdmin)
+2. execute init SQL scripts in folder `elevator/init_db`
+    - elevator/init_db/01_init_tables.sql
+    - elevator/init_db/02_mock_data_LOV.sql
+    - elevator/init_db/03_mock_data_fact.sql
+3. execute analysis scripts in folder `elevator/analysis`
+    - elevator/analysis/01_analysis_passenger.sql
+    - elevator/analysis/02_averages.sql
