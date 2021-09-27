@@ -5,7 +5,7 @@
 SELECT 
 	avg(extract(epoch FROM(departure_dt - arrival_dt))) as average_wait_seconds
 	FROM public.elevator_wait as W
-
+;
 
 -- average travelled floors
 
@@ -36,7 +36,7 @@ join
 			where pact.action_desc = 'exit'
 		)	as E	
 on S.elevator_passenger_id = E.elevator_passenger_id
-
+;
 
 -- average elevator travel time between stops
 select
@@ -51,5 +51,5 @@ select
 		FROM PUBLIC.ELEVATOR_ARRIVALS
 	) as src
 	group by ELEVATOR_ID
-
+;
 
